@@ -1,14 +1,21 @@
 import PropTypes from 'prop-types';
-import { ButtonDelete, ContactEl, NewContactsList } from './ContactList.styled';
+import {
+  ButtonDelete,
+  ContactEl,
+  NewContactsList,
+  User,
+} from './ContactList.styled';
 
 export default function ContactList({ contacts, deleteContact }) {
   return (
     <NewContactsList>
       {contacts.map(({ id, name, number }) => (
         <ContactEl key={id}>
-          <p>
-            {name}: {number}
-          </p>
+          <User>
+            <p>
+              {name}: {number}
+            </p>
+          </User>
           <ButtonDelete type="button" onClick={() => deleteContact(id)}>
             Delete
           </ButtonDelete>

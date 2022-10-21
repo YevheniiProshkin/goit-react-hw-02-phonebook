@@ -20,7 +20,7 @@ import { nanoid } from 'nanoid';
 import ContactForm from './ContactForm/ContactForm ';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
-import { Container } from './Base.styled';
+import { Container, Title, Contacts, EmptyList } from './Base.styled';
 
 export class App extends Component {
   state = {
@@ -82,9 +82,13 @@ export class App extends Component {
 
     return (
       <Container>
-        <h1>Phonebook</h1>
+        <Title>
+          <h1>Phonebook</h1>
+        </Title>
         <ContactForm onSubmit={this.addContact} />
-        <h2>Contacts</h2>
+        <Contacts>
+          <h2>Contacts</h2>
+        </Contacts>
         <Filter value={filter} onChange={this.onFilterChange} />
 
         {contacts.length ? (
@@ -93,7 +97,9 @@ export class App extends Component {
             deleteContact={this.deleteContact}
           />
         ) : (
-          <p>Сontact list is empty </p>
+          <EmptyList>
+            <p>Сontact list is empty😢</p>
+          </EmptyList>
         )}
       </Container>
     );
