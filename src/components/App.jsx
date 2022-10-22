@@ -138,6 +138,8 @@ export class App extends Component {
       </Container>
     );
 
+    // --- Залишае Filter після видалення контактів!
+
     // return (
     //   <Container>
     //     <Title>
