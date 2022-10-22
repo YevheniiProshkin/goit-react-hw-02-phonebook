@@ -109,7 +109,7 @@ export class App extends Component {
   };
 
   render() {
-    const { filter, contacts } = this.state;
+    const { filter } = this.state;
     const visibleContacts = this.getVisibleContacts();
 
     return (
@@ -121,13 +121,15 @@ export class App extends Component {
         <Contacts>
           <h2>Contacts</h2>
         </Contacts>
-        <Filter value={filter} onChange={this.onFilterChange} />
 
-        {contacts.length ? (
-          <ContactList
-            contacts={visibleContacts}
-            deleteContact={this.deleteContact}
-          />
+        {this.state.contacts.length ? (
+          <>
+            <Filter value={filter} onChange={this.onFilterChange} />
+            <ContactList
+              contacts={visibleContacts}
+              deleteContact={this.deleteContact}
+            />
+          </>
         ) : (
           <EmptyList>
             <p>Сontact list is empty😢</p>
@@ -135,5 +137,29 @@ export class App extends Component {
         )}
       </Container>
     );
+
+    // return (
+    //   <Container>
+    //     <Title>
+    //       <h1>Phonebook</h1>
+    //     </Title>
+    //     <ContactForm onSubmit={this.addContact} />
+    //     <Contacts>
+    //       <h2>Contacts</h2>
+    //     </Contacts>
+    //     <Filter value={filter} onChange={this.onFilterChange} />
+
+    //     {contacts.length ? (
+    //       <ContactList
+    //         contacts={visibleContacts}
+    //         deleteContact={this.deleteContact}
+    //       />
+    //     ) : (
+    //       <EmptyList>
+    //         <p>Сontact list is empty😢</p>
+    //       </EmptyList>
+    //     )}
+    //   </Container>
+    // );
   }
 }

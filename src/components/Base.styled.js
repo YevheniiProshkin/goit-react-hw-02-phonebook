@@ -8,6 +8,7 @@ export const Container = styled.div`
   width: auto;
   padding-top: 30px;
   background-color: #d2d6b4;
+  border-bottom: 4px solid #4f7582;
 `;
 
 export const Title = styled.h1`
