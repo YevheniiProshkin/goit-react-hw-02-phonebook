@@ -34,12 +34,6 @@ export class App extends Component {
   };
 
   addContact = ({ name, number }) => {
-    const contact = {
-      id: nanoid(),
-      name,
-      number,
-    };
-
     const { contacts } = this.state;
 
     if (
@@ -48,14 +42,52 @@ export class App extends Component {
       )
     ) {
       alert(`${name} is already in contacts.`);
-    } else if (contacts.find(contact => contact.number === number)) {
-      alert(`${number} is already in contacts.`);
-    } else {
-      this.setState(({ contacts }) => ({
-        contacts: [contact, ...contacts],
-      }));
+      return;
     }
+
+    if (
+      contacts.find(
+        contact => contact.number.toLowerCase() === number.toLowerCase()
+      )
+    ) {
+      alert(`${number} is already in contacts.`);
+      return;
+    }
+
+    const contact = {
+      id: nanoid(),
+      name,
+      number,
+    };
+
+    this.setState(({ contacts }) => ({ contacts: [contact, ...contacts] }));
   };
+
+  // --- Працюючий варіант!
+
+  // addContact = ({ name, number }) => {
+  //   const { contacts } = this.state;
+
+  //   if (
+  //     contacts.find(
+  //       contact => contact.name.toLowerCase() === name.toLowerCase()
+  //     )
+  //   ) {
+  //     alert(`${name} is already in contacts.`);
+  //   } else if (contacts.find(contact => contact.number === number)) {
+  //     alert(`${number} is already in contacts.`);
+  //   } else {
+  //     this.setState(({ contacts }) => ({
+  //       contacts: [contact, ...contacts],
+  //     }));
+  //   }
+
+  //   const contact = {
+  //     id: nanoid(),
+  //     name,
+  //     number,
+  //   };
+  // };
 
   getVisibleContacts = () => {
     const { contacts, filter } = this.state;
